@@ -1,8 +1,10 @@
 <div class="animate-pulse space-y-4">
   @if (variant === 'stat') {
-    @for (i of rowsArray; track i) {
-      <div class="h-24 bg-gray-200 dark:bg-gray-700 rounded-xl"></div>
-    }
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      @for (i of rowsArray; track i) {
+        <div class="h-24 bg-gray-200 dark:bg-gray-700 rounded-xl"></div>
+      }
+    </div>
   } @else if (variant === 'card') {
     @for (i of rowsArray; track i) {
       <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-xl space-y-3">
