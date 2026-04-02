@@ -8,7 +8,12 @@
   "projects": {
     "task-manager": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "standalone": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -22,10 +27,26 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*.json",
+                "input": "src/assets/i18n",
+                "output": "assets/i18n"
+              },
+              {
+                "glob": "**/*.json",
+                "input": "src/app/features/dashboard/i18n",
+                "output": "assets/i18n/dashboard"
+              },
+              {
+                "glob": "**/*.json",
+                "input": "src/app/features/tasks/i18n",
+                "output": "assets/i18n/tasks"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles/tailwind.css",
+              "src/styles/cdkoverlay.css"
             ]
           },
           "configurations": {
