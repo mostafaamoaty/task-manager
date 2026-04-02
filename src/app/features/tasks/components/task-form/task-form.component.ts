@@ -32,7 +32,7 @@ export class TaskFormComponent implements OnInit {
   @Input() task: Task | null = null;
   @Input() users: Assignee[] = [];
   @Output() saved = new EventEmitter<Partial<Task>>();
-  @Output() cancel = new EventEmitter<void>();
+  @Output() formClosed = new EventEmitter<void>();
 
   submitting = signal(false);
 
@@ -99,7 +99,10 @@ export class TaskFormComponent implements OnInit {
       priority: this.form.value.priority as TaskPriority,
       status: this.form.value.status as TaskStatus,
       dueDate: this.form.value.dueDate!,
-      assignee: assignee ?? this.task?.assignee ?? ({ id: '', name: '', avatar: '', email: '' } as Assignee),
+      assignee:
+        assignee ??
+        this.task?.assignee ??
+        ({ id: '', name: '', avatar: '', email: '' } as Assignee),
       tags: this.tagsArray.value as string[],
     };
     this.submitting.set(true);

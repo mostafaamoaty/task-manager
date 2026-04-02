@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Assignee } from '../../../core/models/task.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { Assignee } from '../../../core/models/task.model';
 export class UserAvatarComponent {
   @Input({ required: true }) user!: Assignee;
   @Input() size: 'sm' | 'md' | 'lg' = 'md';
-  @Input() showHandle: boolean = false;
+  @Input() showHandle = false;
 
   get sizeClass(): string {
     const map = { sm: 'w-6 h-6 text-xs', md: 'w-8 h-8 text-sm', lg: 'w-10 h-10 text-base' };

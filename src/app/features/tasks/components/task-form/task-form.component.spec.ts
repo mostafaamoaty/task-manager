@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -7,9 +7,7 @@ import { TaskFormComponent } from './task-form.component';
 import { Task, Assignee } from '../../../../core/models/task.model';
 import { getTranslocoTestingProvider } from '../../../../../test-helpers/transloco-testing';
 
-const users: Assignee[] = [
-  { id: 'u1', name: 'Alice', avatar: '', email: 'alice@example.com' },
-];
+const users: Assignee[] = [{ id: 'u1', name: 'Alice', avatar: '', email: 'alice@example.com' }];
 
 const existingTask: Task = {
   id: '1',
@@ -79,11 +77,11 @@ describe('TaskFormComponent', () => {
     expect(payload.assignee.id).toBe('u1');
   });
 
-  it('emits cancel when cancel button is clicked', async () => {
+  it('emits formClosed when cancel button is clicked', async () => {
     const user = userEvent.setup();
     const cancelSpy = vi.fn();
     const { fixture } = await render(TaskFormComponent, { inputs: { users }, providers });
-    fixture.componentInstance.cancel.subscribe(cancelSpy);
+    fixture.componentInstance.formClosed.subscribe(cancelSpy);
 
     await user.click(screen.getByText('Cancel'));
     expect(cancelSpy).toHaveBeenCalledOnce();

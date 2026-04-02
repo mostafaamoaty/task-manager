@@ -1,26 +1,29 @@
 <ng-container *transloco="let t">
   <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div
-      class="absolute inset-0 bg-black/50"
-      (click)="cancel.emit()"
-      aria-hidden="true"
-    ></div>
+    <div class="absolute inset-0 bg-black/50" (click)="formClosed.emit()" aria-hidden="true"></div>
     <div
       class="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
       role="dialog"
       [attr.aria-label]="task ? t('tasks.form.editTitle') : t('tasks.form.createTitle')"
     >
-      <div class="sticky top-0 bg-white dark:bg-gray-800 px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
+      <div
+        class="sticky top-0 bg-white dark:bg-gray-800 px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between"
+      >
         <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
           {{ task ? t('tasks.form.editTitle') : t('tasks.form.createTitle') }}
         </h2>
         <button
-          (click)="cancel.emit()"
+          (click)="formClosed.emit()"
           class="p-1 text-gray-400 hover:text-gray-600 transition-colors"
           aria-label="Close"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -28,10 +31,14 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-6 space-y-4">
         <!-- Title -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label
+            for="task-title"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             {{ t('tasks.form.titleLabel') }} *
           </label>
           <input
+            id="task-title"
             formControlName="title"
             type="text"
             [placeholder]="t('tasks.form.titlePlaceholder')"
@@ -50,10 +57,14 @@
 
         <!-- Description -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label
+            for="task-description"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             {{ t('tasks.form.descriptionLabel') }} *
           </label>
           <textarea
+            id="task-description"
             formControlName="description"
             rows="3"
             class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
@@ -67,10 +78,14 @@
         <!-- Priority & Status Row -->
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label
+              for="task-priority"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
               {{ t('tasks.filters.priority') }} *
             </label>
             <select
+              id="task-priority"
               formControlName="priority"
               class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
@@ -84,10 +99,14 @@
             }
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label
+              for="task-status"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
               {{ t('tasks.filters.status') }} *
             </label>
             <select
+              id="task-status"
               formControlName="status"
               class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
@@ -104,10 +123,14 @@
 
         <!-- Due Date -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label
+            for="task-due-date"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             {{ t('tasks.form.dueDateLabel') }} *
           </label>
           <input
+            id="task-due-date"
             formControlName="dueDate"
             type="date"
             class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -123,10 +146,14 @@
 
         <!-- Assignee -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label
+            for="task-assignee"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             {{ t('tasks.form.assigneeLabel') }} *
           </label>
           <select
+            id="task-assignee"
             formControlName="assigneeId"
             class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
@@ -142,19 +169,27 @@
 
         <!-- Tags -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label
+            for="task-tag-input"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             {{ t('tasks.form.tagsLabel') }}
           </label>
           <div class="flex flex-wrap gap-2 mb-2">
             @for (tagCtrl of tagsArray.controls; track $index) {
-              <span class="flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full">
+              <span
+                class="flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full"
+              >
                 {{ tagCtrl.value }}
-                <button type="button" (click)="removeTag($index)" class="hover:text-red-500">×</button>
+                <button type="button" (click)="removeTag($index)" class="hover:text-red-500">
+                  ×
+                </button>
               </span>
             }
           </div>
           <div class="flex gap-2">
             <input
+              id="task-tag-input"
               #tagInput
               type="text"
               placeholder="Add tag..."
@@ -175,7 +210,7 @@
         <div class="flex justify-end gap-3 pt-2">
           <button
             type="button"
-            (click)="cancel.emit()"
+            (click)="formClosed.emit()"
             class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
             {{ t('actions.cancel') }}
@@ -185,7 +220,7 @@
             [disabled]="form.invalid || submitting()"
             class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {{ submitting() ? '...' : (task ? t('actions.save') : t('actions.create')) }}
+            {{ submitting() ? '...' : task ? t('actions.save') : t('actions.create') }}
           </button>
         </div>
       </form>

@@ -15,7 +15,11 @@
       "Bash(npx ng:*)",
       "Bash(python3:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(ls /Users/mostafamoaty/Desktop/task-manager/.eslintrc* /Users/mostafamoaty/Desktop/task-manager/eslint.config*)",
+      "Bash(npx husky:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

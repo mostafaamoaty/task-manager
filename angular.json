@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -44,10 +45,7 @@
                 "output": "assets/i18n/tasks"
               }
             ],
-            "styles": [
-              "src/styles/tailwind.css",
-              "src/styles/cdkoverlay.css"
-            ]
+            "styles": ["src/styles/tailwind.css", "src/styles/cdkoverlay.css"]
           },
           "configurations": {
             "production": {
@@ -87,6 +85,12 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
         }
       }
     }
