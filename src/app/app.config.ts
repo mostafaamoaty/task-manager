@@ -49,12 +49,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([
-        ...(isDevMode() ? [mockApiInterceptor] : []),
-        retryInterceptor,
-        cacheInterceptor,
-        errorInterceptor,
-      ]),
+      withInterceptors([mockApiInterceptor, retryInterceptor, cacheInterceptor, errorInterceptor]),
     ),
     provideAnimations(),
     provideTransloco({
