@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "tasks": "Tasks",
+    "search": "Search...",
+    "newTask": "New Task"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "notFound": "Resource not found.",
+    "network": "Network error. Retrying..."
+  },
+  "confirm": {
+    "deleteTitle": "Delete Task",
+    "deleteMessage": "Are you sure you want to delete \"{{ title }}\"? This action cannot be undone."
+  },
+  "date": {
+    "daysAgo": "{{ count }} day(s) ago",
+    "inDays": "in {{ count }} day(s)",
+    "today": "Today",
+    "overdueBy": "Overdue by {{ count }} day(s)",
+    "dueIn": "Due in {{ count }} day(s)",
+    "dueToday": "Due today"
+  }
+}

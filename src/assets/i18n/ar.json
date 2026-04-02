@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "tasks": "المهام",
+    "search": "بحث...",
+    "newTask": "مهمة جديدة"
+  },
+  "actions": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء"
+  },
+  "errors": {
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "notFound": "المورد غير موجود.",
+    "network": "خطأ في الشبكة. جاري إعادة المحاولة..."
+  },
+  "confirm": {
+    "deleteTitle": "حذف المهمة",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{ title }}\"؟ لا يمكن التراجع عن هذا الإجراء."
+  },
+  "date": {
+    "daysAgo": "منذ {{ count }} يوم",
+    "inDays": "في {{ count }} يوم",
+    "today": "اليوم",
+    "overdueBy": "متأخر بـ {{ count }} يوم",
+    "dueIn": "يستحق خلال {{ count }} يوم",
+    "dueToday": "يستحق اليوم"
+  }
+}
