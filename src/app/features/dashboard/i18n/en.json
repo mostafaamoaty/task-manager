@@ -1,0 +1,17 @@
+{
+  "title": "Dashboard",
+  "stats": {
+    "totalTasks": "Total Tasks",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "overdue": "Overdue"
+  },
+  "charts": {
+    "statusTitle": "Tasks by Status",
+    "priorityTitle": "Tasks by Priority"
+  },
+  "activity": {
+    "title": "Recent Activity",
+    "noActivity": "No recent activity"
+  }
+}

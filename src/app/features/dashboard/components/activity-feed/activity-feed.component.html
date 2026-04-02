@@ -1,0 +1,27 @@
+<ng-container *transloco="let t; read: 'dashboard.activity'">
+  <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+    <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-4">
+      {{ t('title') }}
+    </h3>
+    @if (activities.length === 0) {
+      <p class="text-sm text-gray-400 text-center py-6">{{ t('noActivity') }}</p>
+    } @else {
+      <ul class="space-y-3">
+        @for (task of activities; track task.id) {
+          <li class="flex items-center gap-3">
+            <app-user-avatar [user]="task.assignee" size="sm" />
+            <div class="flex-1 min-w-0">
+              <p class="text-sm text-gray-900 dark:text-white truncate font-medium">
+                {{ task.title }}
+              </p>
+              <p class="text-xs text-gray-400 dark:text-gray-500">
+                {{ task.updatedAt | relativeDate }}
+              </p>
+            </div>
+            <app-status-badge [status]="task.status" />
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</ng-container>

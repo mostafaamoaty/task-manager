@@ -1,0 +1,33 @@
+<ng-container *transloco="let t; read: 'dashboard'">
+  <div class="p-6 max-w-7xl mx-auto">
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">{{ t('title') }}</h1>
+
+    <!-- Stat Cards -->
+    @if (loadingStats()) {
+      <app-skeleton-loader variant="stat" [rows]="4" />
+    } @else {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        @for (stat of statistics(); track stat.id) {
+          <app-stat-card [stat]="stat" />
+        }
+      </div>
+    }
+
+    <!-- Charts Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <app-status-chart
+        [data]="statusChartData()"
+        [labels]="statusLabels()"
+        [title]="t('charts.statusTitle')"
+      />
+      <app-priority-chart
+        [data]="priorityChartData()"
+        [labels]="priorityLabels()"
+        [title]="t('charts.priorityTitle')"
+      />
+    </div>
+
+    <!-- Activity Feed -->
+    <app-activity-feed [activities]="recentActivity()" />
+  </div>
+</ng-container>

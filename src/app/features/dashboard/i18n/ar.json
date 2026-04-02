@@ -1,0 +1,17 @@
+{
+  "title": "لوحة التحكم",
+  "stats": {
+    "totalTasks": "إجمالي المهام",
+    "completed": "المكتملة",
+    "inProgress": "قيد التنفيذ",
+    "overdue": "المتأخرة"
+  },
+  "charts": {
+    "statusTitle": "المهام حسب الحالة",
+    "priorityTitle": "المهام حسب الأولوية"
+  },
+  "activity": {
+    "title": "النشاط الأخير",
+    "noActivity": "لا يوجد نشاط حديث"
+  }
+}
