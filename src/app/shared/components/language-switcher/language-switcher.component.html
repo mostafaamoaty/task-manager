@@ -1,0 +1,33 @@
+<div class="relative" (appClickOutside)="isOpen.set(false)">
+  <button
+    (click)="isOpen.update(v => !v)"
+    class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+    [attr.aria-expanded]="isOpen()"
+    aria-haspopup="listbox"
+  >
+    <span>{{ currentLang() === 'en' ? '🇺🇸 EN' : '🇸🇦 AR' }}</span>
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  @if (isOpen()) {
+    <ul
+      role="listbox"
+      class="absolute right-0 mt-1 w-28 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
+    >
+      @for (lang of langs; track lang.code) {
+        <li>
+          <button
+            (click)="selectLang(lang.code)"
+            class="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            [class.font-semibold]="currentLang() === lang.code"
+            [attr.aria-selected]="currentLang() === lang.code"
+          >
+            {{ lang.label }}
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</div>

@@ -1,0 +1,9 @@
+<div class="flex items-center" [class.gap-1]="showHandle">
+  <div class="rounded-full flex items-center justify-center font-semibold text-white select-none" [class]="sizeClass"
+    [style.background-color]="bgColor" [attr.aria-label]="user.name" [title]="user.name">
+    {{ user.avatar }}
+  </div>
+  @if(showHandle) {
+  <span class="text-sm text-gray-600 dark:text-gray-300">@{{ user.name }}</span>
+  }
+</div>
