@@ -294,4 +294,4 @@ Full English / Arabic support via `@jsverse/transloco`:
 
 ## Development Tooling
 
-This project was developed with **[Claude Code](https://claude.ai/code)** — Anthropic's CLI for AI-assisted development. A `CLAUDE.md` file at the project root documents the project's architecture constraints and conventions so the assistant stays aligned with decisions made across sessions.
+[Claude Code](https://claude.ai/code) was part of my workflow throughout this project — used for exploring API surface areas, validating architectural decisions, and accelerating implementation of repetitive but correctness-sensitive code (interceptors, validators, test setup). The `CLAUDE.md` file at the project root captures the constraints I set for it: which libraries are off-limits, which patterns are mandatory, and how the folder structure should grow. That file kept the assistant from drifting across sessions without me having to re-explain decisions every time.
