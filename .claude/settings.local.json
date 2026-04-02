@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find . -maxdepth 3 -not -path */node_modules/* -not -path */.angular/* -not -path */.git/*)",
+      "Bash(npm install:*)",
+      "Bash(node -e \"const {httpResource} = require\\(''''@angular/common/http''''\\); console.log\\(''''found''''\\);\")",
+      "Bash(grep -r \"httpResource\" node_modules/@angular/common/http/*.d.ts)",
+      "Bash(grep -r export.*httpResource node_modules/@angular/common/ --include=*.d.ts)",
+      "Bash(cat node_modules/angular-in-memory-web-api/types/*.d.ts)",
+      "Bash(node /Users/mostafamoaty/Desktop/task-manager/generate-data.js)",
+      "Bash(grep -r httpResource /Users/mostafamoaty/Desktop/task-manager/node_modules/@angular/common/ --include=*.d.ts -l)",
+      "Bash(npx tsc:*)",
+      "Bash(grep -r \"TranslocoHttpLoader\\\\|HttpLoader\" /Users/mostafamoaty/Desktop/task-manager/node_modules/@jsverse/transloco/lib/ --include=*.d.ts -l)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(npx ng:*)",
+      "Bash(python3:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
