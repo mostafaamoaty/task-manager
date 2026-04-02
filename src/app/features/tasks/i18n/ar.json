@@ -1,0 +1,50 @@
+{
+  "title": "المهام",
+  "filters": {
+    "search": "البحث عن مهام...",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "assignee": "المسند إليه",
+    "all": "الكل"
+  },
+  "status": {
+    "todo": "للتنفيذ",
+    "in_progress": "قيد التنفيذ",
+    "done": "مكتمل"
+  },
+  "priority": {
+    "high": "عالية",
+    "medium": "متوسطة",
+    "low": "منخفضة"
+  },
+  "form": {
+    "titleLabel": "العنوان",
+    "titlePlaceholder": "أدخل عنوان المهمة",
+    "descriptionLabel": "الوصف",
+    "dueDateLabel": "تاريخ الاستحقاق",
+    "assigneeLabel": "المسند إليه",
+    "tagsLabel": "العلامات",
+    "createTitle": "إنشاء مهمة",
+    "editTitle": "تعديل المهمة"
+  },
+  "validation": {
+    "titleRequired": "العنوان مطلوب.",
+    "titleMinLength": "يجب أن يتكون العنوان من 3 أحرف على الأقل.",
+    "titleDuplicate": "توجد مهمة بهذا العنوان بالفعل.",
+    "descriptionRequired": "الوصف مطلوب.",
+    "dueDateRequired": "تاريخ الاستحقاق مطلوب.",
+    "dueDateFuture": "يجب أن يكون تاريخ الاستحقاق في المستقبل.",
+    "assigneeRequired": "المسند إليه مطلوب.",
+    "priorityRequired": "الأولوية مطلوبة.",
+    "statusRequired": "الحالة مطلوبة."
+  },
+  "empty": {
+    "noTasks": "لم يتم العثور على مهام.",
+    "noTasksAction": "أنشئ مهمتك الأولى"
+  },
+  "overdue": "متأخرة",
+  "views": {
+    "list": "قائمة",
+    "board": "لوحة"
+  }
+}

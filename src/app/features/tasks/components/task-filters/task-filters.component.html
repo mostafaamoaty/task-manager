@@ -1,0 +1,56 @@
+<ng-container *transloco="let t; read: 'tasks.filters'">
+  <div class="flex flex-wrap gap-3 items-center">
+    <!-- Search -->
+    <div class="relative flex-1 min-w-48">
+      <svg
+        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0" />
+      </svg>
+      <input
+        [formControl]="searchControl"
+        type="text"
+        [placeholder]="t('search')"
+        class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <!-- Status filter -->
+    <select
+      [value]="filters.status ?? ''"
+      (change)="onStatusChange($event)"
+      class="py-2 px-3 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="">{{ t('all') }} {{ t('status') }}</option>
+      <option value="todo">To Do</option>
+      <option value="in_progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+
+    <!-- Priority filter -->
+    <select
+      [value]="filters.priority ?? ''"
+      (change)="onPriorityChange($event)"
+      class="py-2 px-3 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="">{{ t('all') }} {{ t('priority') }}</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+
+    <!-- Assignee filter -->
+    <select
+      [value]="filters.assigneeId ?? ''"
+      (change)="onAssigneeChange($event)"
+      class="py-2 px-3 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="">{{ t('all') }} {{ t('assignee') }}</option>
+      @for (user of users; track user.id) {
+        <option [value]="user.id">{{ user.name }}</option>
+      }
+    </select>
+  </div>
+</ng-container>

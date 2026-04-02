@@ -1,0 +1,194 @@
+<ng-container *transloco="let t">
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div
+      class="absolute inset-0 bg-black/50"
+      (click)="cancel.emit()"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
+      role="dialog"
+      [attr.aria-label]="task ? t('tasks.form.editTitle') : t('tasks.form.createTitle')"
+    >
+      <div class="sticky top-0 bg-white dark:bg-gray-800 px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+          {{ task ? t('tasks.form.editTitle') : t('tasks.form.createTitle') }}
+        </h2>
+        <button
+          (click)="cancel.emit()"
+          class="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+          aria-label="Close"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-6 space-y-4">
+        <!-- Title -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            {{ t('tasks.form.titleLabel') }} *
+          </label>
+          <input
+            formControlName="title"
+            type="text"
+            [placeholder]="t('tasks.form.titlePlaceholder')"
+            class="w-full px-3 py-2 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [class.border-red-500]="titleControl.invalid && titleControl.touched"
+            [class.border-gray-200]="!(titleControl.invalid && titleControl.touched)"
+            [class.dark:border-gray-600]="!(titleControl.invalid && titleControl.touched)"
+          />
+          @if (titleControl.touched && titleControl.hasError('required')) {
+            <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.titleRequired') }}</p>
+          }
+          @if (titleControl.touched && titleControl.hasError('minlength')) {
+            <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.titleMinLength') }}</p>
+          }
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            {{ t('tasks.form.descriptionLabel') }} *
+          </label>
+          <textarea
+            formControlName="description"
+            rows="3"
+            class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            [class.border-red-500]="descriptionControl.invalid && descriptionControl.touched"
+          ></textarea>
+          @if (descriptionControl.touched && descriptionControl.hasError('required')) {
+            <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.descriptionRequired') }}</p>
+          }
+        </div>
+
+        <!-- Priority & Status Row -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              {{ t('tasks.filters.priority') }} *
+            </label>
+            <select
+              formControlName="priority"
+              class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">--</option>
+              <option value="high">{{ t('tasks.priority.high') }}</option>
+              <option value="medium">{{ t('tasks.priority.medium') }}</option>
+              <option value="low">{{ t('tasks.priority.low') }}</option>
+            </select>
+            @if (form.get('priority')?.touched && form.get('priority')?.hasError('required')) {
+              <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.priorityRequired') }}</p>
+            }
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              {{ t('tasks.filters.status') }} *
+            </label>
+            <select
+              formControlName="status"
+              class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">--</option>
+              <option value="todo">{{ t('tasks.status.todo') }}</option>
+              <option value="in_progress">{{ t('tasks.status.in_progress') }}</option>
+              <option value="done">{{ t('tasks.status.done') }}</option>
+            </select>
+            @if (form.get('status')?.touched && form.get('status')?.hasError('required')) {
+              <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.statusRequired') }}</p>
+            }
+          </div>
+        </div>
+
+        <!-- Due Date -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            {{ t('tasks.form.dueDateLabel') }} *
+          </label>
+          <input
+            formControlName="dueDate"
+            type="date"
+            class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [class.border-red-500]="form.get('dueDate')?.invalid && form.get('dueDate')?.touched"
+          />
+          @if (form.get('dueDate')?.touched && form.get('dueDate')?.hasError('required')) {
+            <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.dueDateRequired') }}</p>
+          }
+          @if (form.get('dueDate')?.touched && form.get('dueDate')?.hasError('futureDate')) {
+            <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.dueDateFuture') }}</p>
+          }
+        </div>
+
+        <!-- Assignee -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            {{ t('tasks.form.assigneeLabel') }} *
+          </label>
+          <select
+            formControlName="assigneeId"
+            class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">--</option>
+            @for (user of users; track user.id) {
+              <option [value]="user.id">{{ user.name }}</option>
+            }
+          </select>
+          @if (form.get('assigneeId')?.touched && form.get('assigneeId')?.hasError('required')) {
+            <p class="text-xs text-red-500 mt-1">{{ t('tasks.validation.assigneeRequired') }}</p>
+          }
+        </div>
+
+        <!-- Tags -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            {{ t('tasks.form.tagsLabel') }}
+          </label>
+          <div class="flex flex-wrap gap-2 mb-2">
+            @for (tagCtrl of tagsArray.controls; track $index) {
+              <span class="flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full">
+                {{ tagCtrl.value }}
+                <button type="button" (click)="removeTag($index)" class="hover:text-red-500">×</button>
+              </span>
+            }
+          </div>
+          <div class="flex gap-2">
+            <input
+              #tagInput
+              type="text"
+              placeholder="Add tag..."
+              class="flex-1 px-3 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              (keydown.enter)="addTag(tagInput.value); tagInput.value = ''; $event.preventDefault()"
+            />
+            <button
+              type="button"
+              (click)="addTag(tagInput.value); tagInput.value = ''"
+              class="px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex justify-end gap-3 pt-2">
+          <button
+            type="button"
+            (click)="cancel.emit()"
+            class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+          >
+            {{ t('actions.cancel') }}
+          </button>
+          <button
+            type="submit"
+            [disabled]="form.invalid || submitting()"
+            class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {{ submitting() ? '...' : (task ? t('actions.save') : t('actions.create')) }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>

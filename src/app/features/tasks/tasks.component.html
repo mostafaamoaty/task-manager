@@ -1,0 +1,60 @@
+<ng-container *transloco="let t; read: 'tasks'">
+  <div class="p-6 max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ t('title') }}</h1>
+      <button
+        (click)="openCreateForm()"
+        class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        {{ t('form.createTitle') }}
+      </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="mb-6">
+      <app-task-filters
+        [filters]="store.filters()"
+        [users]="users()"
+        (filtersChange)="store.setFilter($event)"
+      />
+    </div>
+
+    <!-- Loading -->
+    @if (store.loading()) {
+      <app-skeleton-loader variant="card" [rows]="6" />
+    } @else {
+      <app-task-board
+        [todoTasks]="todoTasks()"
+        [inProgressTasks]="inProgressTasks()"
+        [doneTasks]="doneTasks()"
+        [statusFilter]="store.filters().status"
+        (editTask)="openEditForm($event)"
+        (deleteTask)="confirmDelete($event)"
+        (statusChanged)="onStatusChanged($event)"
+      />
+    }
+
+    <!-- Task Form Modal -->
+    @if (showForm()) {
+      <app-task-form
+        [task]="selectedTask()"
+        [users]="users()"
+        (saved)="onSaved($event)"
+        (cancel)="closeForm()"
+      />
+    }
+
+    <!-- Confirm Delete Dialog -->
+    @if (taskToDelete()) {
+      <app-confirm-dialog
+        [taskTitle]="taskToDelete()!.title"
+        (confirmed)="onDeleteConfirmed()"
+        (cancelled)="taskToDelete.set(null)"
+      />
+    }
+  </div>
+</ng-container>

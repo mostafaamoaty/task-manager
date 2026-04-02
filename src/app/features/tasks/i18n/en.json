@@ -1,0 +1,50 @@
+{
+  "title": "Tasks",
+  "filters": {
+    "search": "Search tasks...",
+    "status": "Status",
+    "priority": "Priority",
+    "assignee": "Assignee",
+    "all": "All"
+  },
+  "status": {
+    "todo": "To Do",
+    "in_progress": "In Progress",
+    "done": "Done"
+  },
+  "priority": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "form": {
+    "titleLabel": "Title",
+    "titlePlaceholder": "Enter task title",
+    "descriptionLabel": "Description",
+    "dueDateLabel": "Due Date",
+    "assigneeLabel": "Assignee",
+    "tagsLabel": "Tags",
+    "createTitle": "Create Task",
+    "editTitle": "Edit Task"
+  },
+  "validation": {
+    "titleRequired": "Title is required.",
+    "titleMinLength": "Title must be at least 3 characters.",
+    "titleDuplicate": "A task with this title already exists.",
+    "descriptionRequired": "Description is required.",
+    "dueDateRequired": "Due date is required.",
+    "dueDateFuture": "Due date must be in the future.",
+    "assigneeRequired": "Assignee is required.",
+    "priorityRequired": "Priority is required.",
+    "statusRequired": "Status is required."
+  },
+  "empty": {
+    "noTasks": "No tasks found.",
+    "noTasksAction": "Create your first task"
+  },
+  "overdue": "Overdue",
+  "views": {
+    "list": "List",
+    "board": "Board"
+  }
+}
